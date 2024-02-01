@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css') }}">
+    <title>{% block title %}Survey App{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{% block header %}Survey App{% endblock %}</h1>
+        </header>
+        <main>
+            {% with messages = get_flashed_messages (with_categories=true) %}
+            {% if messages %}
+              <section class = "messages">
+                {% for category, msg in messages %}
+                  <p class="{{category}}">{{msg}}</p>
+                {% endfor %}
+                </section>
+            {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>
